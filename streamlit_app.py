@@ -193,21 +193,28 @@ st.markdown("""
         letter-spacing: 2px;
     }
 
-    /* Ensure sidebar collapse button stays visible */
-    [data-testid="collapsedControl"],
-    button[kind="header"] {
-        visibility: visible !important;
-        display: flex !important;
-    }
-
     /* DIVIDER */
     hr { border-color: #1a3a1a !important; }
 
-    /* HIDE DEFAULT ELEMENTS — keep sidebar toggle visible */
+    /* HIDE DEFAULT ELEMENTS — keep header visible for sidebar toggle */
     #MainMenu { visibility: hidden; }
     footer { visibility: hidden; }
-    header { visibility: hidden; }
     .stDeployButton { display: none; }
+
+    /* Hide only the header toolbar items, NOT the whole header */
+    header[data-testid="stHeader"] { background: transparent !important; }
+    header[data-testid="stHeader"] > div:first-child { visibility: hidden; }
+
+    /* Always keep sidebar toggle arrow visible */
+    [data-testid="collapsedControl"] {
+        visibility: visible !important;
+        display: flex !important;
+        z-index: 999999 !important;
+    }
+    button[data-testid="baseButton-headerNoPadding"] {
+        visibility: visible !important;
+        display: flex !important;
+    }
 </style>
 """, unsafe_allow_html=True)
 
