@@ -193,11 +193,20 @@ st.markdown("""
         letter-spacing: 2px;
     }
 
+    /* Ensure sidebar collapse button stays visible */
+    [data-testid="collapsedControl"],
+    button[kind="header"] {
+        visibility: visible !important;
+        display: flex !important;
+    }
+
     /* DIVIDER */
     hr { border-color: #1a3a1a !important; }
 
-    /* HIDE DEFAULT ELEMENTS */
-    #MainMenu, footer, header { visibility: hidden; }
+    /* HIDE DEFAULT ELEMENTS — keep sidebar toggle visible */
+    #MainMenu { visibility: hidden; }
+    footer { visibility: hidden; }
+    header { visibility: hidden; }
     .stDeployButton { display: none; }
 </style>
 """, unsafe_allow_html=True)
@@ -288,7 +297,7 @@ with st.sidebar:
     </div>
     """, unsafe_allow_html=True)
 
-    st.button("⚡ ANALYZE CUSTOMER", use_container_width=True, type="primary")
+    analyze = st.button("⚡ ANALYZE CUSTOMER", use_container_width=True, type="primary")
     st.markdown("**CUSTOMER PROFILE**")
     age           = st.slider("AGE",                  18,   75,   35)
     tenure_months = st.slider("TENURE (MONTHS)",       1,  120,   24)
