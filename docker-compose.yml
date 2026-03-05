@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+  causal-api:
+    build: .
+    container_name: causal-decision-engine
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./mlflow_tracking:/app/mlflow_tracking
+      - ./models:/app/models
+      - ./data:/app/data
+    env_file:
+      - .env
+    restart: unless-stopped
+
+  mlflow:
+    image: python:3.11-slim
+    container_name: mlflow-server
+    working_dir: /mlflow
+    volumes:
+      - ./mlflow_tracking:/mlflow
+    ports:
+      - "5000:5000"
+    command: >
+      bash -c "pip install mlflow --quiet &&
+               mlflow server --host 0.0.0.0 --port 5000
+               --backend-store-uri /mlflow"
+    restart: unless-stopped

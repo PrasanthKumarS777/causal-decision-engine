@@ -8,7 +8,7 @@ import mlflow
 import numpy as np
 import pandas as pd
 from econml.dml import LinearDML, CausalForestDML
-from sklearn.ensemble import GradientBoostingRegressor, GradientBoostingRegressor
+from sklearn.ensemble import GradientBoostingClassifier, GradientBoostingRegressor
 
 logger = logging.getLogger(__name__)
 
@@ -191,7 +191,7 @@ class CausalForestEstimator(BaseEstimator):
                     n_estimators=self.config.n_estimators,
                     random_state=self.config.random_state
                 ),
-                model_t=GradientBoostingClassifier(
+                model_t=GradientBoostingRegressor(
                     n_estimators=self.config.n_estimators,
                     random_state=self.config.random_state
                 ),
