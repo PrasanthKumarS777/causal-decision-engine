@@ -1,0 +1,13 @@
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.env
+mlflow_tracking/
+data/
+models/
+*.ipynb_checkpoints/
+.pytest_cache/
+dist/
+build/
+*.egg-info/
