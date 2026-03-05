@@ -13,3 +13,6 @@ networkx
 pydantic
 matplotlib
 seaborn
+mlflow
+pydot
+joblib

@@ -9,6 +9,10 @@ from scipy.stats import beta as beta_dist
 
 from src.data.generator import CustomerDataGenerator, DatasetConfig
 from src.policy.bandit import ThompsonSamplingBandit, BanditConfig
+# ── Auto-train if models missing ──────────────────────────────────────────────
+if not Path("models/t_learner.pkl").exists():
+    import subprocess, sys
+    subprocess.run([sys.executable, "train.py"], check=True)
 
 # ── Page Config ───────────────────────────────────────────────────────────────
 st.set_page_config(
