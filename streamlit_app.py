@@ -196,24 +196,30 @@ st.markdown("""
     /* DIVIDER */
     hr { border-color: #1a3a1a !important; }
 
-    /* HIDE DEFAULT ELEMENTS — keep header visible for sidebar toggle */
+    /* HIDE DEFAULT ELEMENTS */
     #MainMenu { visibility: hidden; }
     footer { visibility: hidden; }
     .stDeployButton { display: none; }
 
-    /* Hide only the header toolbar items, NOT the whole header */
-    header[data-testid="stHeader"] { background: transparent !important; }
-    header[data-testid="stHeader"] > div:first-child { visibility: hidden; }
-
-    /* Always keep sidebar toggle arrow visible */
-    [data-testid="collapsedControl"] {
-        visibility: visible !important;
-        display: flex !important;
-        z-index: 999999 !important;
+    /* Make header transparent but keep it alive in DOM */
+    header[data-testid="stHeader"] {
+        background-color: transparent !important;
+        border-bottom: none !important;
     }
-    button[data-testid="baseButton-headerNoPadding"] {
+
+    /* FORCE sidebar toggle arrow always visible */
+    [data-testid="collapsedControl"],
+    [data-testid="collapsedControl"] button,
+    section[data-testid="stSidebarCollapsedControl"],
+    div[data-testid="stSidebarCollapsedControl"] {
         visibility: visible !important;
+        opacity: 1 !important;
         display: flex !important;
+        pointer-events: all !important;
+        z-index: 999999 !important;
+        position: fixed !important;
+        top: 0.5rem !important;
+        left: 0.5rem !important;
     }
 </style>
 """, unsafe_allow_html=True)
